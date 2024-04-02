@@ -5,7 +5,7 @@
         {
             "type": "object",
             "properties": {
-                "self": {
+                "provider": {
                     "type": "object",
                     "properties": {
                         "vendor": {
@@ -115,5 +115,11 @@
         {
             "$ref": "https://raw.githubusercontent.com/trackingplan/meta-schemas/main/event/1-0-0#"
         }
-    ]
+    ],
+    "provider": {
+        "vendor": "www.trackingplan.com",
+        "name": "providerSchema",
+        "version": "1-0-0"
+    },
+    "$schema": "https://raw.githubusercontent.com/trackingplan/meta-schemas/main/provider/1-0-0#"
 }

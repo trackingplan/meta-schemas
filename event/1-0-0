@@ -120,5 +120,12 @@
         {
             "$ref": "https://json-schema.org/draft/2020-12/schema"
         }
-    ]
+    ],
+    "self": {
+        "vendor": "www.trackingplan.com",
+        "name": "eventSchema",
+        "format": "jsonschema",
+        "version": "1-0-0"
+    },
+    "$schema": "https://raw.githubusercontent.com/trackingplan/meta-schemas/main/event/1-0-0#"
 }
