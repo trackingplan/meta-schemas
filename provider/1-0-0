@@ -1,6 +1,6 @@
 {
     "description": "Meta-schema for validating provider JSON schemas.",
-    "$id": "http://wwww.trackingplan.com/schemas/provider/jsonschema/1-0-0#",
+    "$id": "https://raw.githubusercontent.com/trackingplan/meta-schemas/main/provider/1-0-0#",
     "allOf": [
         {
             "type": "object",
@@ -113,7 +113,7 @@
             ]
         },
         {
-            "$ref": "http://wwww.trackingplan.com/schemas/event/jsonschema/1-0-0#"
+            "$ref": "https://raw.githubusercontent.com/trackingplan/meta-schemas/main/event/1-0-0#"
         }
     ]
 }

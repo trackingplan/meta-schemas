@@ -1,6 +1,6 @@
 {
     "description": "Meta-schema for validating event JSON schemas.",
-    "$id": "http://wwww.trackingplan.com/schemas/event/jsonschema/1-0-0#",
+    "$id": "https://raw.githubusercontent.com/trackingplan/meta-schemas/main/event/1-0-0#",
     "allOf": [
         {
             "type": "object",
@@ -118,7 +118,7 @@
             ]
         },
         {
-            "$ref": "../schemas/eventMetaSchema.json"
+            "$ref": "https://json-schema.org/draft/2020-12/schema"
         }
     ]
 }
