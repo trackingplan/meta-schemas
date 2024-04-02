@@ -1,0 +1,119 @@
+{
+    "description": "Meta-schema for validating provider JSON schemas.",
+    "$id": "http://wwww.trackingplan.com/schemas/provider/jsonschema/1-0-0#",
+    "allOf": [
+        {
+            "type": "object",
+            "properties": {
+                "self": {
+                    "type": "object",
+                    "properties": {
+                        "vendor": {
+                            "type": "string",
+                            "pattern": "^[a-zA-Z0-9-_.]+$"
+                        },
+                        "format": {
+                            "type": "string",
+                            "pattern": "^[a-zA-Z0-9-_]+$"
+                        },
+                        "version": {
+                            "type": "string",
+                            "pattern": "^[0-9]+-[0-9]+-[0-9]+$"
+                        }
+                    },
+                    "required": [
+                        "vendor",
+                        "format",
+                        "version"
+                    ],
+                    "additionalProperties": false
+                },
+                "$defs": {
+                    "type": "object",
+                    "properties": {
+                        "regexes": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object",
+                                "properties": {
+                                    "pattern": {
+                                        "type": "string"
+                                    },
+                                    "ignore_case": {
+                                        "type": "boolean"
+                                    },
+                                    "ignore_diacritics": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "required": [
+                                    "pattern"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "enums": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object",
+                                "properties": {
+                                    "enum": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "ignore_case": {
+                                        "type": "boolean"
+                                    },
+                                    "ignore_diacritics": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "required": [
+                                    "enum"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "conditions": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string",
+                                        "format": "uuid"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "version": {
+                                        "type": "integer"
+                                    },
+                                    "logic": {
+                                        "type": "object"
+                                    }
+                                },
+                                "required": [
+                                    "id",
+                                    "name",
+                                    "version",
+                                    "logic"
+                                ],
+                                "additionalProperties": false
+                            }
+                        }
+                    },
+                    "additionalProperties": true
+                }
+            },
+            "required": [
+                "self"
+            ]
+        },
+        {
+            "$ref": "http://wwww.trackingplan.com/schemas/event/jsonschema/1-0-0#"
+        }
+    ]
+}
