@@ -1,131 +1,159 @@
 {
     "description": "Meta-schema for validating event JSON schemas.",
     "$id": "https://raw.githubusercontent.com/trackingplan/meta-schemas/main/event/1-0-0#",
-    "allOf": [
-        {
+    "type": "object",
+    "properties": {
+        "self": {
             "type": "object",
             "properties": {
-                "self": {
-                    "type": "object",
-                    "properties": {
-                        "vendor": {
-                            "type": "string",
-                            "pattern": "^[a-zA-Z0-9-_.]+$"
-                        },
-                        "name": {
-                            "type": "string",
-                            "pattern": "^[a-zA-Z0-9-_]+$"
-                        },
-                        "format": {
-                            "type": "string",
-                            "pattern": "^[a-zA-Z0-9-_]+$"
-                        },
-                        "version": {
-                            "type": "string",
-                            "pattern": "^[0-9]+-[0-9]+-[0-9]+$"
-                        }
-                    },
-                    "required": [
-                        "vendor",
-                        "name",
-                        "format",
-                        "version"
-                    ],
-                    "additionalProperties": false
+                "vendor": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9-_.]+$"
                 },
-                "$defs": {
-                    "type": "object",
-                    "properties": {
-                        "regexes": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "object",
-                                "properties": {
-                                    "pattern": {
-                                        "type": "string"
-                                    },
-                                    "ignore_case": {
-                                        "type": "boolean"
-                                    },
-                                    "ignore_diacritics": {
-                                        "type": "boolean"
-                                    }
-                                },
-                                "required": [
-                                    "pattern"
-                                ],
-                                "additionalProperties": false
-                            }
-                        },
-                        "enums": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "object",
-                                "properties": {
-                                    "enum": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "ignore_case": {
-                                        "type": "boolean"
-                                    },
-                                    "ignore_diacritics": {
-                                        "type": "boolean"
-                                    }
-                                },
-                                "required": [
-                                    "enum"
-                                ],
-                                "additionalProperties": false
-                            }
-                        },
-                        "conditions": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "object",
-                                "properties": {
-                                    "id": {
-                                        "type": "string",
-                                        "format": "uuid"
-                                    },
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "version": {
-                                        "type": "integer"
-                                    },
-                                    "logic": {
-                                        "type": "object"
-                                    }
-                                },
-                                "required": [
-                                    "id",
-                                    "name",
-                                    "version",
-                                    "logic"
-                                ],
-                                "additionalProperties": false
-                            }
-                        }
-                    },
-                    "additionalProperties": true
+                "name": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9-_]+$"
+                },
+                "format": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9-_]+$"
+                },
+                "version": {
+                    "type": "string",
+                    "pattern": "^[0-9]+-[0-9]+-[0-9]+$"
                 }
             },
             "required": [
-                "self"
-            ]
+                "vendor",
+                "name",
+                "format",
+                "version"
+            ],
+            "additionalProperties": false
         },
-        {
-            "$ref": "https://json-schema.org/draft/2020-12/schema"
+        "properties": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "string",
+                                    "number",
+                                    "boolean",
+                                    "object",
+                                    "array",
+                                    "null"
+                                ]
+                            },
+                            {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "string",
+                                        "number",
+                                        "boolean",
+                                        "object",
+                                        "array",
+                                        "null"
+                                    ]
+                                },
+                                "minItems": 1
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "type"
+                ],
+                "additionalProperties": true
+            }
+        },
+        "$defs": {
+            "type": "object",
+            "properties": {
+                "regexes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                            "pattern": {
+                                "type": "string"
+                            },
+                            "ignore_case": {
+                                "type": "boolean"
+                            },
+                            "ignore_diacritics": {
+                                "type": "boolean"
+                            }
+                        },
+                        "required": [
+                            "pattern"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "enums": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                            "enum": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "ignore_case": {
+                                "type": "boolean"
+                            },
+                            "ignore_diacritics": {
+                                "type": "boolean"
+                            }
+                        },
+                        "required": [
+                            "enum"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "conditions": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "format": "uuid"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "version": {
+                                "type": "integer"
+                            },
+                            "logic": {
+                                "type": "object"
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "name",
+                            "version",
+                            "logic"
+                        ],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "additionalProperties": true
         }
-    ],
-    "self": {
-        "vendor": "www.trackingplan.com",
-        "name": "eventSchema",
-        "format": "jsonschema",
-        "version": "1-0-0"
     },
-    "$schema": "https://raw.githubusercontent.com/trackingplan/meta-schemas/main/event/1-0-0#"
+    "required": [
+        "self"
+    ]
 }

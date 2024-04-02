@@ -3,13 +3,38 @@
     "$id": "https://raw.githubusercontent.com/trackingplan/meta-schemas/main/provider/1-0-0#",
     "type": "object",
     "properties": {
-        "$ref": "https://raw.githubusercontent.com/trackingplan/meta-schemas/main/event/1-0-0#"
+        "self": {
+            "type": "object",
+            "properties": {
+                "vendor": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9-_.]+$"
+                },
+                "format": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9-_]+$"
+                },
+                "version": {
+                    "type": "string",
+                    "pattern": "^[0-9]+-[0-9]+-[0-9]+$"
+                }
+            },
+            "required": [
+                "vendor",
+                "format",
+                "version"
+            ],
+            "additionalProperties": false
+        },
+        "properties": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "https://raw.githubusercontent.com/trackingplan/meta-schemas/main/event/1-0-0#"
+            }
+        }
     },
-    "self": {
-        "vendor": "www.trackingplan.com",
-        "name": "eventProvider",
-        "format": "jsonschema",
-        "version": "1-0-0"
-    },
-    "$schema": "https://raw.githubusercontent.com/trackingplan/meta-schemas/main/provider/1-0-0#"
+    "required": [
+        "self",
+        "properties"
+    ]
 }
